@@ -52,6 +52,10 @@
 /mob/living/carbon/human/verb/suicide()
 	set hidden = 1
 
+	if(!(config.suicide_allowed))
+		to_chat(src, "Suicide has been disabled.")
+		return
+
 	be_suicidal()
 
 /mob/living/carbon/human/proc/be_suicidal(forced = FALSE)
@@ -116,6 +120,10 @@
 		to_chat(src, "You're already dead!")
 		return
 
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
+		return
+
 	if(!SSticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
@@ -141,6 +149,10 @@
 		to_chat(src, "You're already dead!")
 		return
 
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
+		return
+
 	if(suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
@@ -160,6 +172,10 @@
 		to_chat(src, "You're already dead!")
 		return
 
+	if(!(config.suicide_allowed))
+		to_chat(src, "Suicide has been disabled.")
+		return
+
 	if(suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
@@ -177,6 +193,11 @@
 	set desc = "Kill yourself and become a ghost (You will receive a confirmation prompt)"
 	set name = "pAI Suicide"
 	var/answer = input("REALLY kill yourself? This action can't be undone.", "Suicide", "No") in list ("Yes", "No")
+
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
+		return
+
 	if(answer == "Yes")
 		if(canmove || resting)
 			close_up()
@@ -196,6 +217,10 @@
 		to_chat(src, "You're already dead!")
 		return
 
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
+		return
+
 	if(suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return
@@ -213,6 +238,10 @@
 	set hidden = 1
 	if(stat == 2)
 		to_chat(src, "You're already dead!")
+		return
+
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
 		return
 
 	if(suiciding)
@@ -235,6 +264,11 @@
 	if(stat == DEAD)
 		to_chat(src, "You're already dead!")
 		return
+
+	if(!(config.suicide_allowed_specialcase))
+		to_chat(src, "Special case suicides have been disabled.")
+		return
+
 	if(suiciding)
 		to_chat(src, "You're already committing suicide! Be patient!")
 		return

@@ -251,6 +251,12 @@
 	// Makes gamemodes respect player limits
 	var/enable_gamemode_player_limit = 0
 
+	// Encourages players to cryo? serious?
+	var/suicide_allowed = 0
+
+	// Special cases (im a gud coder)
+	var/suicide_allowed_specialcase = 0
+
 /datum/configuration/New()
 	for(var/T in subtypesof(/datum/game_mode))
 		var/datum/game_mode/M = T
@@ -740,6 +746,10 @@
 					config.disable_localhost_admin = 1
 				if("enable_gamemode_player_limit")
 					config.enable_gamemode_player_limit = 1
+				if("suicide_allowed")
+					config.suicide_allowed = 0
+				if("suicide_allowed_specialcase")
+					config.suicide_allowed_specialcase = 1
 				else
 					log_config("Unknown setting in configuration: '[name]'")
 

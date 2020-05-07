@@ -460,3 +460,9 @@ DISABLE_HIGH_POP_MC_MODE_AMOUNT 60
 
 ## If uncommented, all gamemodes will respect the number of required players. Defaults to no.
 #ENABLE_GAMEMODE_PLAYER_LIMIT
+
+## Encourages players to cryo? serious?
+#SUICIDE_ALLOWED
+
+## Special cases (im a gud coder)
+#SUICIDE_ALLOWED_SPECIALCASE

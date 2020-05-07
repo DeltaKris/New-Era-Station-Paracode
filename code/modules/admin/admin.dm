@@ -760,6 +760,33 @@ GLOBAL_VAR_INIT(nologevent, 0)
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+
+/datum/admins/proc/toggle_suiciding()
+	set name = "Toggle Suiciding"
+	set category = "Server"
+	set desc = "Toggles suiciding for humans and borgs."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	config.suicide_allowed = !( config.suicide_allowed )
+
+	log_admin("[key_name(usr)] has [config.suicide_allowed ? "enabled" : "disabled"] suicide.")
+	message_admins("[key_name_admin(usr)] has [config.suicide_allowed ? "enabled" : "disabled"] suicide.")
+
+/datum/admins/proc/toggle_suiciding_special()
+	set name = "Toggle Suiciding Special Cases"
+	set category = "Server"
+	set desc = "Toggles suiciding for brains, ais, pais, aliens(xenos), slimes and mice."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	config.suicide_allowed_specialcase = !( config.suicide_allowed_specialcase )
+
+	log_admin("[key_name(usr)] has [config.suicide_allowed_specialcase ? "enabled" : "disabled"] suicide special cases.")
+	message_admins("[key_name_admin(usr)] has [config.suicide_allowed_specialcase ? "enabled" : "disabled"] suicide special cases.")
+
 /datum/admins/proc/toggle_aliens()
 	set category = "Event"
 	set desc="Toggle alien mobs"
